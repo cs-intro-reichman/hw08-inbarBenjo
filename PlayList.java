@@ -221,7 +221,7 @@ class PlayList
     {   
          
         int indexMin = start; 
-        if ( start >= 0 && start < this.getMaxSize() )
+        if ( start >= 0 && start < this.getMaxSize()   && this.tracks[start] != null)
         {
            int minimum = this.tracks[start].getDuration() ;
            for ( int i = start +1; i < this.getMaxSize() ; i ++ )
@@ -256,7 +256,7 @@ class PlayList
              {
                 if (this.tracks[i] != null && this.tracks[i].getTitle().length() < lengthTitle)
                 {
-                   nameTitle = this.tracks[i].getTitle() ; 
+                   nameTitle = this.tracks[i].getTitle(); 
                 }
              }
 
