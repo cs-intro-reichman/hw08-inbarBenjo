@@ -220,14 +220,15 @@ class PlayList
     private int minIndex(int start) 
     {   
          
-        int indexMin = 0; 
-        if ( start > 0 && start < this.getMaxSize() )
+        int indexMin = start; 
+        if ( start >= 0 && start < this.getMaxSize() )
         {
            int minimum = this.tracks[start].getDuration() ;
-           for ( int i = start; i < this.getMaxSize() ; i ++ )
+           for ( int i = start +1; i < this.getMaxSize() ; i ++ )
            {
-               if (this.tracks[i].getDuration() < minimum)
+               if ( this.tracks[i] != null && this.tracks[i].getDuration() < minimum)
                {
+                  minimum = this.tracks[i].getDuration() ; 
                   indexMin = i ; 
                }
            }
@@ -262,11 +263,11 @@ class PlayList
              return nameTitle; 
             }
         }
-         else 
-         {
+       
             return null ; 
-         }
-        }
+         
+    } 
+        
     
 
     /** Sorts this list by increasing duration order: Tracks with shorter
@@ -282,13 +283,17 @@ class PlayList
        
         for ( int i = 0 ; i < this.getMaxSize() - 1 ; i ++)
         {   
-            int indexNew = minIndex(i);             
+            int indexNew = minIndex(i);      
+            if ( indexNew >=0)    
+            {
+
             if (indexNew != i )
             {
             Track track1 = tracks[i];
             tracks[i] = tracks[indexNew] ; 
             tracks[indexNew] = track1 ;
             }
+        }
 
         }
     
