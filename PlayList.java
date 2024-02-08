@@ -246,7 +246,7 @@ class PlayList
     public String titleOfShortestTrack() 
     {   
         
-        String nameTitle = ""; 
+        String nameTitle = null; 
        
         if ( this.getSize() != 0 )
         {  
@@ -263,11 +263,11 @@ class PlayList
                 }
              }
 
-             return nameTitle; 
+             
             }
         }
-       
-            return null ; 
+       return nameTitle; 
+            
          
     } 
         
