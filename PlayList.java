@@ -1,6 +1,7 @@
 /** Represnts a list of musical tracks. The list has a maximum capacity (int),
  *  and an actual size (number of tracks in the list, an int). */
-class PlayList {
+class PlayList 
+{
     private Track[] tracks;  // Array of tracks (Track objects)   
     private int maxSize;     // Maximum number of tracks in the array
     private int size;        // Actual number of tracks in the array
@@ -58,8 +59,12 @@ class PlayList {
         //// replace the following statement with your code
         String textp = ""; 
         for(int i = 0 ; i < maxSize ; i ++)
-        {
-            textp =  textp + tracks[i].toString() + "\n" ;
+        {   
+            if (tracks[i] != null)
+            {
+                textp =  textp + tracks[i].toString() + "\n" ;
+            }
+            
         }
         return textp;
     }
@@ -82,7 +87,11 @@ class PlayList {
         int totalduration = 0 ; 
         for ( int i = 0 ; i < this.getMaxSize() ; i ++)
         {
-             totalduration += tracks[i].getDuration() ; 
+            if (tracks[i] != null)
+            {
+                   totalduration += tracks[i].getDuration() ; 
+            }
+          
         }
 
         return totalduration;
@@ -95,7 +104,7 @@ class PlayList {
         int indexN = -1 ; 
         for ( int i =0 ; i < this.getMaxSize() ; i ++ )
         {
-            if (tracks[i].getTitle().equals(title))
+            if ( tracks[i] != null &&  tracks[i].getTitle().equals(title) )
             {
                 indexN = i ; 
                 return indexN ; 
@@ -152,8 +161,7 @@ class PlayList {
         
     }
 
-
-    
+   
 
     /** Removes the first track that has the given title from this list.
      *  If such a track is not found, or the list is empty, or the given index
@@ -165,7 +173,7 @@ class PlayList {
 
             for ( int i = 0 ; i < this.getMaxSize(); i ++)
                         {
-                            if (this.tracks[i].getTitle().equals(title) == true)
+                            if (this.tracks[i] != null &&  this.tracks[i].getTitle().equals(title) == true)
                             {
                                 this.tracks[i]= null; 
                                 size -- ;
@@ -240,23 +248,26 @@ class PlayList {
         String nameTitle = ""; 
         if ( this.getSize() != 0 )
         {  
+            if ( this.tracks[0] != null)
+            {
              int lengthTitle = this.tracks[0].getTitle().length() ; 
              for ( int i = 0 ; i < this.getMaxSize(); i ++)
              {
-                if ( this.tracks[i].getTitle().length() < lengthTitle)
+                if (this.tracks[i] != null && this.tracks[i].getTitle().length() < lengthTitle)
                 {
                    nameTitle = this.tracks[i].getTitle() ; 
                 }
              }
 
-             return nameTitle;
+             return nameTitle; 
+            }
         }
          else 
          {
             return null ; 
          }
-       
-    }
+        }
+    
 
     /** Sorts this list by increasing duration order: Tracks with shorter
      *  durations will appear first. The sort is done in-place. In other words,
@@ -268,19 +279,20 @@ class PlayList {
         // calling the minIndex method in each iteration.
         //// replace this statement with your code
         
-        int indexNew = 0 ; 
-        for ( int i = 0 ; i < this.getMaxSize() ; i ++)
+       
+        for ( int i = 0 ; i < this.getMaxSize() - 1 ; i ++)
         {   
-
-            for (int j = 0; j < this.getMaxSize(); j ++)
+            int indexNew = minIndex(i);             
+            if (indexNew != i )
             {
-                indexNew = minIndex(j);             
-            }
-            Track track1 = new Track(this.tracks[i].getTitle(), this.tracks[i].getArtist(), this.tracks[i].getDuration());
+            Track track1 = tracks[i];
             tracks[i] = tracks[indexNew] ; 
             tracks[indexNew] = track1 ;
+            }
 
         }
     
     }
 }
+
+
