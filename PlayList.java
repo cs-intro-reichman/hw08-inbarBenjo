@@ -45,6 +45,7 @@ class PlayList {
         {
             int num = this.getSize(); 
             tracks[num] = track;
+            size ++ ;
             return true;
         }
        
@@ -130,6 +131,7 @@ class PlayList {
            }
         
             tracks[i]= track; 
+            size ++ ;
             return true;
         }
         
