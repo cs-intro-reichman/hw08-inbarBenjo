@@ -71,6 +71,7 @@ class PlayList {
         if (this.getSize() > 0)
         {
             tracks[this.getSize()-1] = null;
+            size -- ;
         }
     }
     
@@ -146,6 +147,7 @@ class PlayList {
         if ( i > 0 && this.getSize() != 0 && i < this.getMaxSize())
         {
             this.tracks[i] = null;
+            size -- ;
         } 
         
     }
@@ -166,9 +168,10 @@ class PlayList {
                             if (this.tracks[i].getTitle().equals(title) == true)
                             {
                                 this.tracks[i]= null; 
+                                size -- ;
                             }
                         }
-
+             
         }
         
     }
@@ -179,6 +182,7 @@ class PlayList {
         if (this.getSize() >0 )
         {
             this.tracks[0]= null; 
+            size -- ;
         }
     }
     
