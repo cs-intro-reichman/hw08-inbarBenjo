@@ -247,6 +247,7 @@ class PlayList
     {   
         
         String nameTitle = ""; 
+       
         if ( this.getSize() != 0 )
         {  
             if ( this.tracks[0] != null)
@@ -257,6 +258,7 @@ class PlayList
                 if (this.tracks[i] != null && this.tracks[i].getTitle().length() < lengthTitle)
                 {
                    nameTitle = this.tracks[i].getTitle(); 
+                   lengthTitle= this.tracks[i].getTitle().length();
                 }
              }
 
