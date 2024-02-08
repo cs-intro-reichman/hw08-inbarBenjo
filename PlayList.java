@@ -248,23 +248,21 @@ class PlayList
         
         String nameTitle = null; 
        
-        if ( this.getSize() != 0 )
+        if ( this.getSize() != 0 && this.tracks[0] != null )
         {  
-            if ( this.tracks[0] != null)
-            {
-             int lengthTitle = this.tracks[0].getTitle().length() ; 
-             nameTitle= this.tracks[0].getTitle();
+
+            int shortD = this.tracks[0].getDuration() ; 
+            nameTitle= this.tracks[0].getTitle();
+                        
              for ( int i = 0 ; i < this.getMaxSize(); i ++)
              {
-                if (this.tracks[i] != null && this.tracks[i].getTitle().length() < lengthTitle)
+                if (this.tracks[i] != null && this.tracks[i].getDuration() < shortD)
                 {
                    nameTitle = this.tracks[i].getTitle(); 
-                   lengthTitle= this.tracks[i].getTitle().length();
+                   shortD= this.tracks[i].getDuration();
                 }
-             }
-
-             
-            }
+             }           
+            
         }
        return nameTitle; 
             
